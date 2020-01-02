@@ -9,5 +9,6 @@ lazy val root = (project in file(".")).
     )),
     name := "aws-s3-app-scala",
     libraryDependencies += scalaTest % Test,
-    libraryDependencies += scalacticTest % Test
+    libraryDependencies += scalacticTest % Test,
+    libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.10.41"
   )
