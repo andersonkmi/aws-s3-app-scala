@@ -16,12 +16,17 @@ class S3Bucket {
     this.region = region
   }
 
+  def this(name: String, creationDateTime: java.time.Instant) {
+    this(name)
+    this.creationDateTime = creationDateTime
+  }
+
   def this(name: String, region: AwsRegion.Value, creationDateTime: java.time.Instant) {
     this(name, region)
     this.creationDateTime = creationDateTime
   }
 
-  def getName(): String = {
+  def getName: String = {
     this.name
   }
 }
