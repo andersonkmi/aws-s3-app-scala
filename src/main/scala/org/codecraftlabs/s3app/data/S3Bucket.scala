@@ -26,11 +26,8 @@ class S3Bucket {
     this.creationDateTime = creationDateTime
   }
 
-  def getName: String = {
-    this.name
-  }
+  def getName: String = this.name
 
-  override def toString: String = {
-    s"{'name':'$name', 'region': '${region.code}', 'creationDateTime': '${creationDateTime.toString}'}"
-  }
+  override def toString: String = s"{'name':'$name', 'region': '${region.code}', 'creationDateTime': '${creationDateTime.toString}'}"
+
 }

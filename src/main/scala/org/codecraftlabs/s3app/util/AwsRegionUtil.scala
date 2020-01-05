@@ -5,7 +5,7 @@ import software.amazon.awssdk.regions.Region
 import software.amazon.awssdk.regions.Region.of
 
 object AwsRegionUtil {
-  def getRegion(region: AwsRegion.Value): Region = {
+  def region(region: AwsRegion.Value): Region = {
     of(region.regionCode)
   }
 }
