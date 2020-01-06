@@ -15,17 +15,15 @@ object S3BucketCreateService {
       logger.info(s"Creating the bucket '$bucket'")
       val s3Client = S3Client.builder.region(region(bucket.getRegion)).build
       val request = CreateBucketRequest.builder.bucket(bucket.getName).build
-      val response = s3Client.createBucket(request)
+      s3Client.createBucket(request)
       logger.info(s"Bucket '${bucket.getName}' created successfully")
     } catch {
-      case exception: AwsServiceException => {
+      case exception: AwsServiceException =>
         logger.warn("Error when creating bucket")
         throw AwsException("Error when creating bucket", exception)
-      }
-
     }
   }
-  
+
   def createBuckets(buckets: List[S3Bucket]): Unit = {
     buckets.foreach(create)
   }
