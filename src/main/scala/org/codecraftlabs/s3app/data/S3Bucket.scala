@@ -1,5 +1,7 @@
 package org.codecraftlabs.s3app.data
 
+import java.time.Instant
+
 
 class S3Bucket {
   private var name = ""
@@ -27,6 +29,10 @@ class S3Bucket {
   }
 
   def getName: String = this.name
+
+  def getRegion: AwsRegion.Value = this.region
+
+  def getCreationDateTime: Instant = this.creationDateTime
 
   override def toString: String = s"{'name':'$name', 'region': '${region.code}', 'creationDateTime': '${creationDateTime.toString}'}"
 
