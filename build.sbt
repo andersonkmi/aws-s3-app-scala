@@ -13,5 +13,6 @@ lazy val root = (project in file(".")).
     libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.10.41",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.13.0",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0"
-  )
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0",
+    libraryDependencies += "commons-cli" % "commons-cli" % "1.4"
+)
