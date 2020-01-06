@@ -22,6 +22,9 @@ object S3BucketDeleteService {
         logger.warn("Error when deleting bucket")
         throw AwsException("Error when deleting bucket", exception)
     }
+  }
 
+  def delete(buckets: List[S3Bucket]): Unit = {
+    buckets.foreach(delete)
   }
 }

@@ -24,7 +24,7 @@ object S3BucketCreateService {
     }
   }
 
-  def createBuckets(buckets: List[S3Bucket]): Unit = {
+  def create(buckets: List[S3Bucket]): Unit = {
     buckets.foreach(create)
   }
 }
