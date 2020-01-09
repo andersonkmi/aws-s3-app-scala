@@ -15,3 +15,8 @@ lazy val root = (project in file(".")).
     libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0"
 )
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
