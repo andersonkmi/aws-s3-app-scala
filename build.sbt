@@ -1,5 +1,19 @@
 import Dependencies._
 
+lazy val excludes = jacocoExcludes in Test  :=Seq(
+  "org.codecraftlabs.s3app.Main*"
+)
+
+lazy val jacoco = jacocoReportSettings in test  :=JacocoReportSettings(
+  "Test Coverage Report",
+  None,
+  JacocoThresholds (branch = 100),
+  Seq(JacocoReportFormats.ScalaHTML,
+    JacocoReportFormats.CSV),
+  "utf-8")
+
+val jacocoSettings = Seq(jacoco, excludes)
+
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
@@ -13,7 +27,8 @@ lazy val root = (project in file(".")).
     libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.10.41",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.13.0",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0"
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0",
+    jacocoSettings
 )
 
 assemblyMergeStrategy in assembly := {
