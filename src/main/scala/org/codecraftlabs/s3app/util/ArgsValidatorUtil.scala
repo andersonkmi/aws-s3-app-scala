@@ -5,7 +5,10 @@ import org.codecraftlabs.s3app.util.ArgsUtils.{bucketName, regionName, serviceNa
 import org.codecraftlabs.s3app.util.ServiceType.{S3_BUCKET_CREATE_SERVICE, S3_BUCKET_DELETE_SERVICE, S3_BUCKET_LIST_SERVICE}
 
 object ArgsValidatorUtil {
+  private val MIN_ARGS_SIZE = 2
   def validate(args: Map[String, String]): Unit = {
+    if (args.size < MIN_ARGS_SIZE) throw InvalidArgumentException("Missing arguments")
+
     val service = args.getOrElse(serviceName, "")
 
     service match {
