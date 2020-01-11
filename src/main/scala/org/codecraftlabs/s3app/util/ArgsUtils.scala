@@ -20,4 +20,8 @@ object ArgsUtils {
     }
     result.toMap
   }
+
+  def buildArg(args: Map[String, String]): AppArgument = {
+    null
+  }
 }
