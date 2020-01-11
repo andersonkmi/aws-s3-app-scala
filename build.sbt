@@ -1,7 +1,8 @@
 import Dependencies._
 
 lazy val excludes = jacocoExcludes in Test  :=Seq(
-  "org.codecraftlabs.s3app.Main*"
+  "org.codecraftlabs.s3app.Main*",
+  "org.codecraftlabs.s3app.service.S3Bucket*"
 )
 
 lazy val jacoco = jacocoReportSettings in test  :=JacocoReportSettings(

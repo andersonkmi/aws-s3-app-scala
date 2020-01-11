@@ -22,11 +22,9 @@ object AwsRegion extends Enumeration {
   val EuWest3: Val = Val("eu-west-3", "Europe (Paris)")
   val ApNorthEast1: Val = Val("ap-northeast-1", "Asia Pacific (Tokyo)")
   val ApNorthEast2: Val = Val("ap-northeast-2", "Asia Pacific (Seoul)")
-  val ApNorthEast3: Val = Val("ap-northeast-3", "Asia Pacific (Osaka-Local)")
   val ApSouthEast1: Val = Val("ap-southeast-1", "Asia Pacific (Singapore)")
   val ApSouthEast2: Val = Val("ap-southeast-2", "Asia Pacific (Sydney)")
   val ApSouth1: Val = Val("ap-south-1", "Asia Pacific (Mumbai)")
-  val ApEast1: Val = Val("ap-east-1", "Asia Pacific (Hong Kong)")
 
   def withNameOpt(item: String): Option[Value] = values.find(_.regionCode.equals(item))
 }
