@@ -21,10 +21,10 @@ object S3BucketListService {
       val buckets = response.buckets.asScala
       Option(buckets.map(element => new S3Bucket(element.name(), element.creationDate())).toList)
     } catch  {
-      case exception: AwsServiceException => {
-        logger.warn("Error when listing buckets")
-        throw AwsException("Error when listing buckets", exception)
-      }
+      case exception: AwsServiceException =>
+        val message = "Error when listing buckets"
+        logger.warn(message)
+        throw AwsException(message, exception)
     }
   }
 }
