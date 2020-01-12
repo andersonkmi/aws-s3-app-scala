@@ -21,6 +21,7 @@ object ArgsUtils {
     result.toMap
   }
 
+  // todo: check this method as well
   def buildArg(args: Map[String, String]): AppArgument = {
     null
   }
