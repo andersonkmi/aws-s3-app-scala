@@ -19,6 +19,7 @@ object Main extends App {
     validate(mappedArgs)
 
     val selectedService: String = mappedArgs.getOrElse(serviceName, "")
+    // todo: include delete service
     selectedService match {
       case S3_BUCKET_LIST_SERVICE =>
         val region: String = mappedArgs.getOrElse(regionName, "")
