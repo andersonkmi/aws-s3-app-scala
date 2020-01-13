@@ -22,25 +22,10 @@ object Main {
       validate(mappedArgs)
 
       val selectedService: String = mappedArgs.getOrElse(serviceName, "")
-      // todo: extract code into private methods
       selectedService match {
-        case S3_BUCKET_LIST_SERVICE =>
-          val region: String = mappedArgs.getOrElse(regionName, "")
-          val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
-          val result = list(awsRegion)
-          result.get.foreach(logger.info)
-        case S3_BUCKET_CREATE_SERVICE =>
-          val region: String = mappedArgs.getOrElse(regionName, "")
-          val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
-          val bucket: String = mappedArgs.getOrElse(bucketName, "")
-          val s3Bucket = new S3Bucket(bucket, awsRegion)
-          create(s3Bucket)
-        case S3_BUCKET_DELETE_SERVICE =>
-          val region: String = mappedArgs.getOrElse(regionName, "")
-          val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
-          val bucket: String = mappedArgs.getOrElse(bucketName, "")
-          val s3Bucket = new S3Bucket(bucket, awsRegion)
-          delete(s3Bucket)
+        case S3_BUCKET_LIST_SERVICE => listBucketService(mappedArgs)
+        case S3_BUCKET_CREATE_SERVICE => createBucketService(mappedArgs)
+        case S3_BUCKET_DELETE_SERVICE => deleteBucketService(mappedArgs)
         case _ => logger.warn("Not implemented yet")
       }
     } catch {
@@ -52,6 +37,25 @@ object Main {
   }
 
   private def listBucketService(args: Map[String, String]): Unit = {
-    
+    val region: String = args.getOrElse(regionName, "")
+    val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
+    val result = list(awsRegion)
+    result.get.foreach(logger.info)
+  }
+
+  private def createBucketService(args: Map[String, String]): Unit = {
+    val region: String = args.getOrElse(regionName, "")
+    val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
+    val bucket: String = args.getOrElse(bucketName, "")
+    val s3Bucket = new S3Bucket(bucket, awsRegion)
+    create(s3Bucket)
+  }
+
+  private def deleteBucketService(args: Map[String, String]): Unit = {
+    val region: String = args.getOrElse(regionName, "")
+    val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
+    val bucket: String = args.getOrElse(bucketName, "")
+    val s3Bucket = new S3Bucket(bucket, awsRegion)
+    delete(s3Bucket)
   }
 }
