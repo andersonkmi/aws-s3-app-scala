@@ -41,6 +41,7 @@ object Main {
     val awsRegion = if (withNameOpt(region).isEmpty) AwsRegion.UsEast1 else withNameOpt(region).get
     val result = list(awsRegion)
     result.get.foreach(logger.info)
+    result.get.foreach(println)
   }
 
   private def createBucketService(args: Map[String, String]): Unit = {
