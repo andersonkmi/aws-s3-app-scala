@@ -1,6 +1,6 @@
 package org.codecraftlabs.s3app.util
 
-import org.codecraftlabs.s3app.data.AwsRegion
+import org.codecraftlabs.s3app.data.AwsRegion.withNameOpt
 import org.codecraftlabs.s3app.util.ArgsUtils.{bucketName, regionName, serviceName}
 import org.codecraftlabs.s3app.util.ServiceType.{S3_BUCKET_CREATE_SERVICE, S3_BUCKET_DELETE_SERVICE, S3_BUCKET_LIST_SERVICE}
 
@@ -25,6 +25,7 @@ object ArgsValidatorUtil {
 
     service match {
       case S3_BUCKET_LIST_SERVICE => validateAppArgsForBucketList(appArgs)
+      case S3_BUCKET_CREATE_SERVICE | S3_BUCKET_DELETE_SERVICE => validateAppArgsForBucketCreateOrDelete(appArgs)
       case _ => throw InvalidArgumentException(s"Invalid or missing $serviceName argument")
     }
   }
@@ -34,7 +35,19 @@ object ArgsValidatorUtil {
 
     if (args.region.isEmpty) throw InvalidArgumentException(s"Missing $regionName argument")
 
-    if (AwsRegion.withNameOpt(args.region).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
+    if (withNameOpt(args.region).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
+
+  }
+
+  private def validateAppArgsForBucketCreateOrDelete(args: AppArgument): Unit = {
+
+    if (args.service.isEmpty) throw InvalidArgumentException(s"Missing $serviceName argument")
+
+    if (args.region.isEmpty) throw InvalidArgumentException(s"Missing $regionName argument")
+
+    if (args.bucket.isEmpty) throw InvalidArgumentException(s"Missing $bucketName argument")
+
+    if (withNameOpt(args.region).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
 
   }
 
@@ -49,7 +62,7 @@ object ArgsValidatorUtil {
 
     if (bucketArg.isEmpty) throw InvalidArgumentException(s"Missing $bucketName argument")
 
-    if (AwsRegion.withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
+    if (withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
   }
 
   private def validateForBucketDelete(args: Map[String, String]): Unit = {
@@ -63,7 +76,7 @@ object ArgsValidatorUtil {
 
     if (bucketArg.isEmpty) throw InvalidArgumentException(s"Missing $bucketName argument")
 
-    if (AwsRegion.withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
+    if (withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
   }
 
   private def validateForBucketList(args: Map[String, String]): Unit = {
@@ -74,6 +87,6 @@ object ArgsValidatorUtil {
 
     if (regionArg.isEmpty) throw InvalidArgumentException(s"Missing $regionName argument")
 
-    if (AwsRegion.withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
+    if (withNameOpt(regionArg).isEmpty) throw InvalidArgumentException(s"Invalid $regionName argument value")
   }
 }

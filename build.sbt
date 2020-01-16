@@ -28,8 +28,8 @@ lazy val root = (project in file(".")).
     libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.10.41",
     libraryDependencies += "software.amazon.awssdk" % "apache-client" % "2.10.48",
     libraryDependencies += "software.amazon.awssdk" % "netty-nio-client" % "2.10.48",
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0",
     libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.13.0",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0" % Runtime,
     libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0",
     jacocoSettings
 )
