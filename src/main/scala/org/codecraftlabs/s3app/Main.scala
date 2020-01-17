@@ -1,16 +1,16 @@
 package org.codecraftlabs.s3app
 
 import org.apache.logging.log4j.{LogManager, Logger}
-import org.codecraftlabs.s3app.data.{AwsRegion, S3Bucket}
 import org.codecraftlabs.s3app.data.AwsRegion.withNameOpt
+import org.codecraftlabs.s3app.data.{AwsRegion, S3Bucket}
+import org.codecraftlabs.s3app.service.AwsException
 import org.codecraftlabs.s3app.service.S3BucketCreateService.create
 import org.codecraftlabs.s3app.service.S3BucketDeleteService.delete
 import org.codecraftlabs.s3app.service.S3BucketListService.list
-import org.codecraftlabs.s3app.service.AwsException
-import org.codecraftlabs.s3app.util.ArgsUtils.{bucketName, buildArg, parseArgs, regionName, serviceName}
-import org.codecraftlabs.s3app.util.{AppArgument, ArgsUtils, InvalidArgumentException}
+import org.codecraftlabs.s3app.util.ArgsUtils.{buildArg, parseArgs, serviceName}
 import org.codecraftlabs.s3app.util.ArgsValidatorUtil.validate
 import org.codecraftlabs.s3app.util.ServiceType.{S3_BUCKET_CREATE_SERVICE, S3_BUCKET_DELETE_SERVICE, S3_BUCKET_LIST_SERVICE}
+import org.codecraftlabs.s3app.util.{AppArgument, InvalidArgumentException}
 
 object Main {
   @transient private lazy val logger: Logger = LogManager.getLogger(Main.getClass)
