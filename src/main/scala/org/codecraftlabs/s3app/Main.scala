@@ -19,6 +19,8 @@ object Main {
     logger.info("Starting app")
     try {
       val mappedArgs = parseArgs(args)
+      validate(mappedArgs)
+
       val appArgs = buildArg(mappedArgs)
       validate(appArgs)
 
