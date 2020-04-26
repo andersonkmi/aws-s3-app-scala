@@ -19,8 +19,9 @@ object S3BucketCreateService {
       logger.info(s"Bucket '${bucket.getName}' created successfully")
     } catch {
       case exception: AwsServiceException =>
-        logger.warn("Error when creating bucket")
-        throw AwsException("Error when creating bucket", exception)
+        val errorMessage = "Error when creating bucket"
+        logger.warn(errorMessage)
+        throw AwsException(errorMessage, exception)
     }
   }
 

@@ -19,8 +19,9 @@ object S3BucketDeleteService {
       logger.info(s"Bucket '${bucket.getName}' deleted successfully")
     } catch {
       case exception: AwsServiceException =>
-        logger.warn("Error when deleting bucket")
-        throw AwsException("Error when deleting bucket", exception)
+        val message = "Error when deleting bucket"
+        logger.warn(message)
+        throw AwsException(message, exception)
     }
   }
 

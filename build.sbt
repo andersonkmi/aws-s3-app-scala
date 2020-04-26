@@ -25,14 +25,16 @@ lazy val root = (project in file(".")).
     name := "aws-s3-app-scala",
     libraryDependencies += scalaTest % Test,
     libraryDependencies += scalacticTest % Test,
-    libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.13.3",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.13.0",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0",
-    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0",
+    libraryDependencies += "software.amazon.awssdk" % "aws-sdk-java" % "2.13.3" % "provided",
+    libraryDependencies += "software.amazon.awssdk" % "apache-client" % "2.10.48" % "provided",
+    libraryDependencies += "software.amazon.awssdk" % "netty-nio-client" % "2.10.48" % "provided",
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-core" % "2.13.0" % "provided",
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-api" % "2.13.0" % "provided",
+    libraryDependencies += "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.13.0" % "provided",
     jacocoSettings
 )
 
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
-  case x => MergeStrategy.first
+  case _ => MergeStrategy.first
 }

@@ -2,7 +2,6 @@ package org.codecraftlabs.s3app.data
 
 import java.time.Instant
 
-
 class S3Bucket {
   private var name = ""
   private var region = AwsRegion.UsEast1
