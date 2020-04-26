@@ -5,7 +5,7 @@ lazy val excludes = jacocoExcludes in Test  :=Seq(
   "org.codecraftlabs.s3app.service.S3Bucket*"
 )
 
-lazy val jacoco = jacocoReportSettings in test  :=JacocoReportSettings(
+lazy val jacoco = jacocoReportSettings in test := JacocoReportSettings(
   "Test Coverage Report",
   None,
   JacocoThresholds (branch = 100),
